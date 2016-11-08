@@ -13,6 +13,8 @@
 		B95D99C81DCD074200BAEE9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B95D99C71DCD074200BAEE9A /* Assets.xcassets */; };
 		B95D99CB1DCD074200BAEE9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95D99C91DCD074200BAEE9A /* LaunchScreen.storyboard */; };
 		B95D99D61DCD074300BAEE9A /* SpeechTestingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D99D51DCD074300BAEE9A /* SpeechTestingTests.swift */; };
+		B95D99E11DCD086700BAEE9A /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D99E01DCD086700BAEE9A /* ViewModel.swift */; };
+		B95D99E31DCD087700BAEE9A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D99E21DCD087700BAEE9A /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		B95D99D11DCD074300BAEE9A /* SpeechTestingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpeechTestingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95D99D51DCD074300BAEE9A /* SpeechTestingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechTestingTests.swift; sourceTree = "<group>"; };
 		B95D99D71DCD074300BAEE9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B95D99E01DCD086700BAEE9A /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		B95D99E21DCD087700BAEE9A /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 				B95D99C71DCD074200BAEE9A /* Assets.xcassets */,
 				B95D99C91DCD074200BAEE9A /* LaunchScreen.storyboard */,
 				B95D99CC1DCD074200BAEE9A /* Info.plist */,
+				B95D99E01DCD086700BAEE9A /* ViewModel.swift */,
+				B95D99E21DCD087700BAEE9A /* MainView.swift */,
 			);
 			path = SpeechTesting;
 			sourceTree = "<group>";
@@ -201,6 +207,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B95D99C31DCD074200BAEE9A /* ViewController.swift in Sources */,
+				B95D99E31DCD087700BAEE9A /* MainView.swift in Sources */,
+				B95D99E11DCD086700BAEE9A /* ViewModel.swift in Sources */,
 				B95D99C11DCD074200BAEE9A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
