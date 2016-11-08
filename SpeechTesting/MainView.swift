@@ -14,7 +14,6 @@ class MainView: UIView {
 	@IBOutlet weak var resultLabel: UILabel!
 	@IBOutlet weak var waveForm: SwiftSiriWaveformView!
 	
-	var change:CGFloat = 0.01
 	var didSetup = false
 	var model: ViewModel!
 	
@@ -65,7 +64,8 @@ extension MainView: ViewModelDelegate{
 	}
 	
 	func setAmplification(amplification: CGFloat) {
-		self.change *= -1.0
-		self.waveForm.amplitude += amplification
+		DispatchQueue.main.async {
+			self.waveForm.amplitude += amplification < 0 ? -amplification :  amplification
+		}
 	}
 }

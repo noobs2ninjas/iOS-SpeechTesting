@@ -104,12 +104,13 @@ class ViewModel: NSObject {
 		}
 		
 		let recordingFormat = inputNode.outputFormat(forBus: 0)
-		inputNode.installTap(onBus: 0, bufferSize: 100, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
+		inputNode.installTap(onBus: 0, bufferSize: 2048, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
 			self.recognitionRequest?.append(buffer)
+			var value:Float = 0.0
 			for i in 0 ..< Int(buffer.frameLength) {
-				let value:Float = sinf(441.0*Float(i)*2*Float(M_PI)/Float(buffer.frameCapacity))
-				self.delegate?.setAmplification(amplification: CGFloat(value))
+				value += sinf(441.0*Float(i)*2*Float(M_PI)/Float(buffer.frameCapacity))
 			}
+			self.delegate?.setAmplification(amplification: CGFloat(value/Float(buffer.frameLength)))
 		}
 		
 		audioEngine.prepare()
