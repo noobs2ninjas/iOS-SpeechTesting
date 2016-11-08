@@ -14,8 +14,10 @@ class MainView: UIView {
 	@IBOutlet weak var resultLabel: UILabel!
 	@IBOutlet weak var waveForm: SwiftSiriWaveformView!
 	
+	var change:CGFloat = 0.01
 	var didSetup = false
 	var model: ViewModel!
+	
 	var buttonValues:(enabled: Bool, recording: Bool)! {
 		didSet{
 			speechButton.isEnabled = buttonValues.enabled
@@ -34,7 +36,8 @@ class MainView: UIView {
 	}
 	
 	override func layoutSubviews() {
-		
+		self.waveForm.density = 1.0
+		self.waveForm.amplitude = 1.0
 			if !didSetup{
 				buttonValues = (false, false)
 				resultLabel.numberOfLines = 0
@@ -62,9 +65,7 @@ extension MainView: ViewModelDelegate{
 	}
 	
 	func setAmplification(amplification: CGFloat) {
-		DispatchQueue.main.async {
-			self.waveForm.amplitude = amplification
-			self.setNeedsDisplay()
-		}
+		self.change *= -1.0
+		self.waveForm.amplitude += amplification
 	}
 }
