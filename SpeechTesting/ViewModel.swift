@@ -8,11 +8,14 @@
 
 import UIKit
 import Speech
+import Accelerate
 
 protocol ViewModelDelegate {
 	func buttonStateChanged(enabled: Bool, recording: Bool)
 	func wordsSaid(words: String)
 	func reset()
+	
+	func setAmplification(amplification: CGFloat)
 }
 
 
@@ -22,7 +25,6 @@ class ViewModel: NSObject {
 	private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
 	private var recognitionTask: SFSpeechRecognitionTask?
 	private let audioEngine = AVAudioEngine()
-	
 	public var delegate: ViewModelDelegate?
 	
 	override init(){
@@ -64,6 +66,7 @@ class ViewModel: NSObject {
 			try audioSession.setCategory(AVAudioSessionCategoryRecord)
 			try audioSession.setMode(AVAudioSessionModeMeasurement)
 			try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
+			
 		}catch{
 			print("shit failed")
 		}
@@ -100,9 +103,12 @@ class ViewModel: NSObject {
 			}
 		}
 		
+		
 		let recordingFormat = inputNode.outputFormat(forBus: 0)
 		inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
 			self.recognitionRequest?.append(buffer)
+			
+			
 		}
 		
 		audioEngine.prepare()

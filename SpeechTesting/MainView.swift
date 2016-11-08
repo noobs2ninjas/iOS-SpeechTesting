@@ -7,12 +7,14 @@
 //
 
 import UIKit
-
+import SwiftSiriWaveformView
 class MainView: UIView {
 	
 	@IBOutlet weak var speechButton: UIButton!
 	@IBOutlet weak var resultLabel: UILabel!
+	@IBOutlet weak var waveForm: SwiftSiriWaveformView!
 	
+	var didSetup = false
 	var model: ViewModel!
 	var buttonValues:(enabled: Bool, recording: Bool)! {
 		didSet{
@@ -32,8 +34,12 @@ class MainView: UIView {
 	}
 	
 	override func layoutSubviews() {
-			buttonValues = (false, false)
-			resultLabel.numberOfLines = 0
+		
+			if !didSetup{
+				buttonValues = (false, false)
+				resultLabel.numberOfLines = 0
+				didSetup = true
+			}
 	}
 	
 	@IBAction func buttonPressed(sender: UIButton){
@@ -53,5 +59,12 @@ extension MainView: ViewModelDelegate{
 	
 	func reset() {
 		resultLabel.text = ""
+	}
+	
+	func setAmplification(amplification: CGFloat) {
+		DispatchQueue.main.async {
+			self.waveForm.amplitude = amplification
+			self.setNeedsDisplay()
+		}
 	}
 }
